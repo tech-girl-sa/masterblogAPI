@@ -1,0 +1,25 @@
+
+POSTS = [
+    {"id": 1, "title": "First post", "content": "This is the first post."},
+    {"id": 2, "title": "Second post", "content": "This is the second post."},
+    {"id": 3, "title": "A Day in the Life", "content": "Today was a mix of work, coffee, and a long walk in the park."},
+    {"id": 4, "title": "Tech Trends 2025", "content": "AI continues to dominate the tech world, with new advancements in automation and machine learning."},
+    {"id": 5, "title": "Best Books of the Year", "content": "I just finished an incredible novel. Here’s my list of must-reads for this year."},
+    {"id": 6, "title": "Fitness Journey Update", "content": "I’ve been hitting the gym regularly, and I can finally see progress!"},
+    {"id": 7, "title": "Weekend Getaway", "content": "Spent a relaxing weekend by the lake, away from the city noise."},
+    {"id": 8, "title": "My Favorite Recipes", "content": "Sharing some of my favorite quick and easy meals you can make at home."},
+    {"id": 9, "title": "Learning a New Language", "content": "I’ve started learning German, and it’s both challenging and exciting!"},
+    {"id": 10, "title": "Movie Review: A Sci-Fi Classic", "content": "Just rewatched 'Blade Runner' and it’s still one of the best sci-fi films ever."},
+    {"id": 11, "title": "Productivity Hacks", "content": "Here are some tips to stay productive while working from home."},
+    {"id": 12, "title": "The Future of Space Travel", "content": "SpaceX and NASA are making incredible strides toward Mars exploration."},
+    {"id": 13, "title": "Why I Started Writing", "content": "Writing has always been my way of expressing thoughts and emotions."},
+    {"id": 14, "title": "My Favorite Podcasts", "content": "If you love true crime, tech, or philosophy, check out these podcasts."},
+    {"id": 15, "title": "Photography Tips for Beginners", "content": "A few simple tricks to improve your photography skills."},
+    {"id": 16, "title": "A Nostalgic Trip Down Memory Lane", "content": "Looking back at old photos and realizing how much has changed."},
+    {"id": 17, "title": "Overcoming Creative Block", "content": "Stuck on a project? Here are some ways to spark creativity."},
+    {"id": 18, "title": "Travel Bucket List", "content": "These are the top destinations I want to visit in the next five years."},
+    {"id": 19, "title": "Lessons from Failure", "content": "Failure is never easy, but it often leads to the biggest growth."},
+    {"id": 20, "title": "The Power of Daily Habits", "content": "Small habits make a big difference over time. Here’s how I stay consistent."},
+    {"id": 21, "title": "Minimalism and Simple Living", "content": "Decluttering my space has helped clear my mind as well."},
+    {"id": 22, "title": "The Joy of Reading", "content": "There’s nothing quite like getting lost in a good book."}
+]

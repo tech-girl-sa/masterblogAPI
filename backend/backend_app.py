@@ -1,13 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+from data.data import POSTS
+
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
-POSTS = [
-    {"id": 1, "title": "First post", "content": "This is the first post."},
-    {"id": 2, "title": "Second post", "content": "This is the second post."},
-]
+
 
 
 @app.route('/api/posts', methods=['GET', 'POST'])
@@ -51,6 +50,20 @@ def update(id):
         return jsonify(post_to_update), 200
     else:
         return jsonify({"error": "Post doesn't exist."}), 404
+
+
+
+@app.route('/api/posts/search', methods=['GET'])
+def search():
+    title = request.args.get("title", "")
+    content = request.args.get("content", "")
+    search_results = POSTS
+    if title:
+        search_results = [post for post in search_results if title.lower() in post["title"].lower()]
+    if content:
+        search_results = [post for post in search_results if content.lower() in post["content"].lower()]
+    return jsonify(search_results), 200
+
 
 
 if __name__ == '__main__':
