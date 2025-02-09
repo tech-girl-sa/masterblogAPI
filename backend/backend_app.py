@@ -1,12 +1,11 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+from backend.outils import sort_posts, fetch_post_by_id
 from data.data import POSTS
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
-
-
 
 
 @app.route('/api/posts', methods=['GET', 'POST'])
@@ -26,22 +25,9 @@ def get_posts():
             or (direction and direction not in ["desc", "asc"])):
         return jsonify({"error":"Invalid query arguments."}), 400
 
-    sorted_posts = POSTS
-    if sort == "title":
-        sorted_posts = sorted(sorted_posts, key= lambda x:x["title"])
-        if direction == "desc":
-            sorted_posts = sorted(sorted_posts, key=lambda x: x["title"], reverse=True)
-    if sort == "content":
-        sorted_posts = sorted(sorted_posts, key=lambda x: x["content"])
-        if direction == "desc":
-            sorted_posts = sorted(sorted_posts, key=lambda x: x["content"], reverse=True)
+    sorted_posts = sort_posts(sort, direction)
     return jsonify(sorted_posts)
 
-
-def fetch_post_by_id(id):
-    posts = [post for post in POSTS if post['id']==id]
-    if len(posts) > 0:
-        return posts[0]
 
 
 @app.route('/api/posts/<int:id>', methods=['DELETE'])
