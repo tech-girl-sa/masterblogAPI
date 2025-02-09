@@ -19,7 +19,23 @@ def get_posts():
             new_post["id"] = max([post['id'] for post in POSTS]) + 1
             POSTS.append(new_post)
             return new_post, 201
-    return jsonify(POSTS)
+
+    sort = request.args.get("sort","")
+    direction = request.args.get("direction", "")
+    if ((sort and sort not in ["title", "content"])
+            or (direction and direction not in ["desc", "asc"])):
+        return jsonify({"error":"Invalid query arguments."}), 400
+
+    sorted_posts = POSTS
+    if sort == "title":
+        sorted_posts = sorted(sorted_posts, key= lambda x:x["title"])
+        if direction == "desc":
+            sorted_posts = sorted(sorted_posts, key=lambda x: x["title"], reverse=True)
+    if sort == "content":
+        sorted_posts = sorted(sorted_posts, key=lambda x: x["content"])
+        if direction == "desc":
+            sorted_posts = sorted(sorted_posts, key=lambda x: x["content"], reverse=True)
+    return jsonify(sorted_posts)
 
 
 def fetch_post_by_id(id):
