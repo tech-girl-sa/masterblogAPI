@@ -1,0 +1,183 @@
+
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Masterblog API",
+    "version": "1.0.0"
+  },
+  "servers": [{ "url": "http://localhost:5001" }],
+  "tags": [{ "name": "Post", "description": "Post API - CRUD" }],
+  "paths": {
+        "/api/posts": {
+            "get": {
+              "summary": "Returns all posts",
+              "produces": ["application/json"],
+              "tags": ["Post"],
+              "parameters": [
+                  {
+                    "name": "sort",
+                    "in": "query",
+                    "description": "Sort results accepts two values title or content",
+                    "required": false,
+                    "type": "string",
+                    "enum": ["title", "content"]
+                  },
+                 {
+                    "name": "direction",
+                    "in": "query",
+                    "description": "Sorting direction accepts two values desc or asc",
+                    "required": false,
+                    "type": "string",
+                    "enum": ["desc", "asc"]
+                  }
+               ],
+              "responses": {
+                "200": {
+                  "description": "Successful operation"
+                }
+              }
+            },
+            "post": {
+              "summary": "Add new post",
+              "tags": ["Post"],
+              "consumes": [
+                "application/json"
+              ],
+              "produces": [
+                "application/json"
+              ],
+              "parameters": [
+                {
+                  "name": "Post",
+                  "in": "body",
+                  "description": "JSON data for a post",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definitions/Post"
+                  }
+                }
+              ],
+              "responses": {
+                "201": {
+                  "description": "New post returned"
+                },
+                "400": {
+                  "description": "Invalid post data."
+                }
+              }
+        }
+        },
+    "/api/posts/{id}": {
+        "put": {
+          "summary": "Update a post",
+          "tags": [
+            "Post"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Id of the post",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "Post",
+              "in": "body",
+              "description": "JSON data for a post",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Post"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Updated post returned"
+            },
+            "404": {
+              "description": "Post doesn't exist."
+            }
+          }
+        },
+      "delete": {
+          "summary": "Delete a post",
+          "tags": [
+            "Post"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Id of the post",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Post with id {id} is deleted successfully."
+            },
+            "404": {
+              "description": "Post doesn't exist."
+            }
+          }
+        }
+      },
+    "/api/posts/search": {
+      "get": {
+              "summary": "Returns all posts containing search word",
+              "produces": ["application/json"],
+              "tags": ["Post"],
+               "parameters": [
+                  {
+                    "name": "title",
+                    "in": "query",
+                    "description": "Search word for titles",
+                    "required": false,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                 {
+                    "name": "content",
+                    "in": "query",
+                    "description": "Search word for contents",
+                    "required": false,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+               ],
+              "responses": {
+                "200": {
+                  "description": "Successful operation"
+                }
+              }
+            }
+    }
+  },
+  "definitions": {
+      "Post": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    }
+}
