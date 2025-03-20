@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from backend.outils import sort_posts, fetch_post_by_id
-from backend.swagger_settings import swagger_ui_blueprint, SWAGGER_URL
-from data.data import POSTS
+from outils import sort_posts, fetch_post_by_id
+from swagger_settings import swagger_ui_blueprint, SWAGGER_URL
+from data import POSTS
 
 app = Flask(__name__)
 app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)

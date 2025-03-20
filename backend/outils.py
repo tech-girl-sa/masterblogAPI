@@ -1,4 +1,4 @@
-from data.data import POSTS
+from data import POSTS
 
 
 def sort_posts(sort, direction):
