@@ -12,6 +12,10 @@ CORS(app)  # This will enable CORS for all routes
 
 @app.route('/api/posts', methods=['GET', 'POST'])
 def get_posts():
+    """
+    Fetch all Posts, supports sorting using title or content in an ascending
+    or descending order.
+    """
     if request.method == "POST":
         new_post = request.get_json()
         if "title" not in new_post or "content" not in new_post:
@@ -34,6 +38,7 @@ def get_posts():
 
 @app.route('/api/posts/<int:id>', methods=['DELETE'])
 def delete(id):
+    """Deletes a post fetched by id."""
     post_to_delete = fetch_post_by_id(id)
     if post_to_delete:
         POSTS.remove(post_to_delete)
@@ -44,6 +49,7 @@ def delete(id):
 
 @app.route('/api/posts/<int:id>', methods=['PUT'])
 def update(id):
+    """Updates a given post by id."""
     post_to_update = fetch_post_by_id(id)
     if post_to_update:
         post = request.get_json()
@@ -59,6 +65,9 @@ def update(id):
 
 @app.route('/api/posts/search', methods=['GET'])
 def search():
+    """Searches posts and return only the ones containing the search term either in the title
+        or in the content
+    """
     title = request.args.get("title", "")
     content = request.args.get("content", "")
     search_results = POSTS
